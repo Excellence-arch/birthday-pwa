@@ -1,0 +1,62 @@
+.result-display {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-radius: var(--border-radius);
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid transparent;
+  transition: var(--transition);
+}
+
+.result-icon {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.result-message {
+  flex: 1;
+}
+
+/* Success State */
+.result-display.success {
+  border-left-color: var(--success);
+  background-color: rgba(76, 201, 240, 0.08);
+}
+
+.result-display.success .result-icon {
+  color: var(--success);
+}
+
+/* Error State */
+.result-display.error {
+  border-left-color: var(--error);
+  background-color: rgba(247, 37, 133, 0.08);
+}
+
+.result-display.error .result-icon {
+  color: var(--error);
+}
+
+/* Animation for status change */
+.result-display .result-message {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+  .result-display {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .result-icon {
+    font-size: 1.25rem;
+    margin-right: 0.75rem;
+  }
+}
