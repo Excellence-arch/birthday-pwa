@@ -5,7 +5,7 @@ import ProgressBar from '../components/ProgressBar';
 import ResultDisplay from '../components/ResultDisplay';
 import { uploadCSV } from '../utils/api';
 import { type FileInfo, type UploadStatus } from '../types';
-import '../css/uploadPage.css';
+import './../css/uploadPage.css';
 
 const UploadPage: React.FC = () => {
   const [fileInfo, setFileInfo] = useState<FileInfo | null>(null);
@@ -29,11 +29,9 @@ const UploadPage: React.FC = () => {
       setStatus('uploading');
       setProgress(0);
 
-      // Simulate progress
       const interval = setInterval(() => {
         setProgress((prev) => {
           if (prev >= 90) {
-            // Stop at 90% to wait for API
             clearInterval(interval);
             return prev;
           }

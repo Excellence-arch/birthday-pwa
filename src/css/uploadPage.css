@@ -13,6 +13,7 @@
   --transition: all 0.3s ease;
 }
 
+
 .upload-page {
   display: flex;
   justify-content: center;
@@ -20,6 +21,9 @@
   min-height: 100vh;
   padding: 2rem;
   background: linear-gradient(135deg, #f5f7ff 0%, #f8f9fa 100%);
+  width: 100vw; /* Add this */
+  height: 100vh; /* Add this */
+  box-sizing: border-box; /* Add this */
 }
 
 .upload-card {
@@ -30,6 +34,7 @@
   box-shadow: var(--box-shadow);
   overflow: hidden;
   transition: var(--transition);
+  margin: auto; /* Add this for extra centering */
 }
 
 .upload-header {
