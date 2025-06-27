@@ -12,11 +12,6 @@ interface AuthPageProps {
 const AuthPage: React.FC<AuthPageProps> = ({ type }) => {
   const navigate = useNavigate();
 
-  const handleGoogleSignIn = () => {
-    // Implement Google Sign-In logic here
-    console.log(`Signing ${type === 'login' ? 'in' : 'up'} with Google`);
-  };
-
   return (
     <div className="auth-container">
       {/* Floating particles background */}
@@ -87,17 +82,18 @@ const AuthPage: React.FC<AuthPageProps> = ({ type }) => {
           </p>
         </div>
 
-        <motion.button
-          className="google-button"
-          onClick={handleGoogleSignIn}
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <FcGoogle size={24} />
-          <span>
-            {type === 'login' ? 'Sign in with Google' : 'Sign up with Google'}
-          </span>
-        </motion.button>
+        <a href="http://localhost:3000/api/auth/google">
+          <motion.div
+            className="google-button"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <FcGoogle size={24} />
+            <span>
+              {type === 'login' ? 'Sign in with Google' : 'Sign up with Google'}
+            </span>
+          </motion.div>
+        </a>
 
         <div className="auth-footer">
           {type === 'login' ? (
