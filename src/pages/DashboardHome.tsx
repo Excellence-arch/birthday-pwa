@@ -49,7 +49,6 @@ const DashboardHome: React.FC = () => {
       icon: <FaBirthdayCake />,
       color: '#ff7eb9',
     },
-    { title: 'Gift Ideas', value: 12, icon: <FaGift />, color: '#4facfe' },
   ];
 
   return (
