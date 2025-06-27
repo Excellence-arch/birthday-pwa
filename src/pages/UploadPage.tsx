@@ -39,7 +39,8 @@ const UploadPage: React.FC = () => {
         });
       }, 300);
 
-      const response = await uploadCSV(fileInfo, isGoogleForms);
+      // const response = await uploadCSV(fileInfo, isGoogleForms);
+      const response = await uploadCSV();
 
       setProgress(100);
       setStatus('success');

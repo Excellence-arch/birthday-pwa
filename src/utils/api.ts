@@ -1,9 +1,9 @@
 import { type UploadResponse } from '../types';
-import { type FileInfo } from '../types';
+// import { type FileInfo } from '../types';
 
 export const uploadCSV = async (
-  fileData: FileInfo,
-  isGoogleForms: boolean
+  // fileData: FileInfo,
+  // isGoogleForms: boolean
 ): Promise<UploadResponse> => {
   // In a real implementation, you would use FormData and fetch/axios
   // This is a mock implementation
