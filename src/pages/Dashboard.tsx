@@ -78,7 +78,7 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
       icon: <FaCalendarAlt />,
       label: 'Reminders',
     },
-    { path: '/dashboard/contacts', icon: <FaUserFriends />, label: 'Contacts' },
+    { path: '/dashboard/upload', icon: <FaUserFriends />, label: 'Upload' },
     {
       path: '/dashboard/notifications',
       icon: <FaBell />,

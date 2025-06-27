@@ -11,10 +11,10 @@ const App: React.FC = () => {
   return (
     <Router>
       <Routes>
-        <Route
+        {/* <Route
           path="/upload"
           element={<UploadPage />}
-        />
+        /> */}
         <Route
           path="/"
           element={<LandingPage />}
@@ -34,6 +34,10 @@ const App: React.FC = () => {
           <Route
             index
             element={<DashboardHome />}
+          />
+          <Route
+            path="upload"
+            element={<UploadPage />}
           />
           {/* <Route
           path='*'

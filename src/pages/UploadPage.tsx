@@ -15,6 +15,7 @@ const UploadPage: React.FC = () => {
 
   const handleFileSelect = useCallback((file: File) => {
     setFileInfo({
+      file,
       name: file.name,
       size: file.size,
       type: file.type,
@@ -39,12 +40,9 @@ const UploadPage: React.FC = () => {
         });
       }, 300);
 
-      // const response = await uploadCSV(fileInfo, isGoogleForms);
-      const response = await uploadCSV();
-
+      const response = await uploadCSV(fileInfo);
       setProgress(100);
       setStatus('success');
-
       return response;
     } catch (error) {
       setStatus('error');
@@ -59,7 +57,12 @@ const UploadPage: React.FC = () => {
   };
 
   return (
-    <div className="upload-page">
+    <motion.div
+      className="upload-container"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+    >
       <motion.div
         className="upload-card"
         initial={{ opacity: 0, y: 20 }}
@@ -67,11 +70,8 @@ const UploadPage: React.FC = () => {
         transition={{ duration: 0.3 }}
       >
         <header className="upload-header">
-          <div className="header-icon">
-            <i className="fas fa-birthday-cake"></i>
-          </div>
-          <h1>Birthday Reminder</h1>
-          <p>Upload your CSV file to import birthday data</p>
+          <h2>Upload Birthday Data</h2>
+          <p>Import contacts from a CSV file</p>
         </header>
 
         <div className="upload-content">
@@ -81,26 +81,24 @@ const UploadPage: React.FC = () => {
             isActive={status === 'idle'}
           />
 
-          <motion.div
-            className="form-options"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{
-              opacity: fileInfo ? 1 : 0.5,
-              height: 'auto',
-            }}
-            transition={{ duration: 0.2 }}
-          >
-            <label className="checkbox-container">
-              <input
-                type="checkbox"
-                checked={isGoogleForms}
-                onChange={(e) => setIsGoogleForms(e.target.checked)}
-                disabled={!fileInfo}
-              />
-              <span className="checkmark"></span>
-              This is a Google Forms export
-            </label>
-          </motion.div>
+          {fileInfo && (
+            <motion.div
+              className="form-options"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              transition={{ duration: 0.2 }}
+            >
+              <label className="checkbox-container">
+                <input
+                  type="checkbox"
+                  checked={isGoogleForms}
+                  onChange={(e) => setIsGoogleForms(e.target.checked)}
+                />
+                <span className="checkmark"></span>
+                This is a Google Forms export
+              </label>
+            </motion.div>
+          )}
 
           <div className="action-buttons">
             {status === 'idle' && fileInfo && (
@@ -110,7 +108,7 @@ const UploadPage: React.FC = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <i className="fas fa-upload"></i> Upload CSV
+                Upload CSV
               </motion.button>
             )}
 
@@ -121,7 +119,7 @@ const UploadPage: React.FC = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <i className="fas fa-redo"></i> Upload Another File
+                Upload Another File
               </motion.button>
             )}
           </div>
@@ -149,7 +147,7 @@ const UploadPage: React.FC = () => {
                   status={status}
                   message={
                     status === 'success'
-                      ? `Successfully imported data from ${fileInfo?.name}`
+                      ? `Successfully imported ${fileInfo?.name}`
                       : 'Failed to upload file. Please try again.'
                   }
                 />
@@ -158,7 +156,7 @@ const UploadPage: React.FC = () => {
           </AnimatePresence>
         </div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,3 +1,4 @@
+
 export interface UploadResponse {
   imported: number;
   duplicates: number;
@@ -5,6 +6,7 @@ export interface UploadResponse {
 }
 
 export interface FileInfo {
+  file: File;
   name: string;
   size: number;
   type: string;

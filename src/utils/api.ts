@@ -1,23 +1,31 @@
+import axios from 'axios';
 import { type UploadResponse } from '../types';
-// import { type FileInfo } from '../types';
+import { type FileInfo } from '../types';
 
 export const uploadCSV = async (
-  // fileData: FileInfo,
+  fileData: FileInfo
   // isGoogleForms: boolean
 ): Promise<UploadResponse> => {
-  // In a real implementation, you would use FormData and fetch/axios
-  // This is a mock implementation
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (Math.random() > 0.1) {
-        // 90% success rate for demo
-        resolve({
-          imported: Math.floor(Math.random() * 100) + 50,
-          duplicates: Math.floor(Math.random() * 20),
-        });
-      } else {
-        reject(new Error('Failed to upload file. Please try again.'));
-      }
-    }, 1500);
-  });
+  const formData = new FormData();
+  formData.append('csv', fileData.file, fileData.name);
+  const res = axios.post(
+    `${import.meta.env.VITE_BASE_URL}/import`,
+    formData,
+    {
+      headers: {
+        // 'Content-Type': 'application/json',
+        // Accept: 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    }
+  );
+  return res
+    .then((response) => {
+      console.log(response);
+      return response.data as UploadResponse;
+    })
+    .catch((error) => {
+      console.error('Upload failed:', error);
+      throw error;
+    });
 };
