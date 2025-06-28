@@ -24,7 +24,7 @@ html, body {
 
 .landing-container {
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -74,6 +74,7 @@ html, body {
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
+  min-height: calc(100vh - 100px);
 }
 
 .landing-content {
@@ -207,7 +208,7 @@ html, body {
   }
 
   .content-wrapper {
-    padding: 3rem 1.5rem 1.5rem; /* Increased top padding */
+    padding: 2rem 1.5rem; /* Increased top padding */
   }
 
   .landing-content {
@@ -215,7 +216,7 @@ html, body {
   }
 
   .landing-header {
-    margin-top: 15rem; /* Add top margin */
+    margin-top: 2rem; /* Add top margin */
   }
 
   .landing-features {
@@ -265,7 +266,7 @@ html, body {
   }
 
   .feature-card {
-    padding: 1.25rem;
+    padding: 1rem;
   }
 
   .feature-icon {
@@ -273,6 +274,6 @@ html, body {
   }
 
   .feature-card h3 {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 }

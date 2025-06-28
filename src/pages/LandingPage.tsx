@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import './../css/landingPage.css';
 
 const LandingPage: React.FC = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    // Check for user token and user data in localStorage
+    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    setIsAuthenticated(!!token && !!user);
+  }, []);
+
   return (
     <div className="landing-container">
       {/* Background elements */}
@@ -71,28 +80,44 @@ const LandingPage: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <Link
-              to="/register"
-              className="cta-button primary"
-            >
-              <motion.span
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            {isAuthenticated ? (
+              <Link
+                to="/dashboard"
+                className="cta-button primary"
               >
-                Get Started
-              </motion.span>
-            </Link>
-            <Link
-              to="/login"
-              className="cta-button secondary"
-            >
-              <motion.span
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Sign In
-              </motion.span>
-            </Link>
+                <motion.span
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Go to Dashboard
+                </motion.span>
+              </Link>
+            ) : (
+              <>
+                <Link
+                  to="/register"
+                  className="cta-button primary"
+                >
+                  <motion.span
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Get Started
+                  </motion.span>
+                </Link>
+                <Link
+                  to="/login"
+                  className="cta-button secondary"
+                >
+                  <motion.span
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Sign In
+                  </motion.span>
+                </Link>
+              </>
+            )}
           </motion.div>
         </motion.div>
       </div>
