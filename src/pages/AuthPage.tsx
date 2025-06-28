@@ -82,7 +82,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ type }) => {
           </p>
         </div>
 
-        <a href="http://localhost:3000/api/auth/google">
+        <a href=`${import.meta.env.VITE_BASE_URL}/auth/google`>
           <motion.div
             className="google-button"
             whileHover={{ scale: 1.03 }}
