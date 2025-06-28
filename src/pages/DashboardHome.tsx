@@ -4,7 +4,6 @@ import { FaBirthdayCake, FaGift, FaUserPlus } from 'react-icons/fa';
 import { FiCalendar } from 'react-icons/fi';
 import { useDashboardStore } from './../store/dashboard.store';
 import './../css/DashboardHome.css';
-import { useNavigate } from 'react-router-dom';
 
 const iconMap: Record<string, JSX.Element> = {
   'Total Contacts': <FaUserPlus />,
@@ -22,22 +21,10 @@ const DashboardHome: React.FC = () => {
     loading,
     error,
   } = useDashboardStore();
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetchDashboard();
   }, []);
-
-  useEffect(() => {
-    if (error) {
-      console.log(error);
-    }
-    if (error?.status === 401) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      navigate('/login', { replace: true });
-    }
-  }, [])
 
   if (loading) {
     return (

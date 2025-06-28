@@ -53,6 +53,15 @@ export const useDashboardStore = create<DashboardState>((set, get) => ({
         },
       });
 
+      if(res.status === 401) {
+        // Handle unauthorized access
+        console.error('Unauthorized access - redirecting to login');
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.href = '/login'; // Redirect to login page
+        return;
+      }
+
       // console.log(res);
       const { stats = [], upcomingEvents = [], recentActivity = [] } = res.data;
 

@@ -59,6 +59,15 @@ export const useBirthdayStore = create<BirthdayState>()(
             }
           );
 
+          if(response.status === 401) {
+            // Handle unauthorized access
+            console.error('Unauthorized access - redirecting to login');
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = '/login'; // Redirect to login page
+            return;
+          }
+
           const birthdays = response.data;
           const today = new Date();
 
@@ -112,6 +121,15 @@ export const useBirthdayStore = create<BirthdayState>()(
               Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
           });
+
+          if (response.status === 401) {
+            // Handle unauthorized access
+            console.error('Unauthorized access - redirecting to login');
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = '/login'; // Redirect to login page
+            return;
+          }
 
           set((state) => {
             const newBirthday = response.data;
