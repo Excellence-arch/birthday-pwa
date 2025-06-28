@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import UploadPage from './pages/UploadPage';
 import LandingPage from './pages/LandingPage';
@@ -8,8 +8,12 @@ import DashboardHome from './pages/DashboardHome';
 import NotFoundPage from './pages/NotFoundPage';
 import Birthdays from './pages/BirthdayPage';
 import AddBirthday from './pages/AddBirthday';
+import axios from 'axios';
 
 const App: React.FC = () => {
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_BASE_URL}/health-check`);
+  }, []);
   return (
     <Router>
       <Routes>
