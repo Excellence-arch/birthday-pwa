@@ -53,16 +53,7 @@ export const useDashboardStore = create<DashboardState>((set, get) => ({
         },
       });
 
-      if(res.status === 401) {
-        // Handle unauthorized access
-        console.error('Unauthorized access - redirecting to login');
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        window.location.href = '/login'; // Redirect to login page
-        return;
-      }
-
-      // console.log(res);
+            // console.log(res);
       const { stats = [], upcomingEvents = [], recentActivity = [] } = res.data;
 
       set({
@@ -81,6 +72,13 @@ export const useDashboardStore = create<DashboardState>((set, get) => ({
     } catch (err: any) {
       console.error('Error fetching dashboard:', err);
       set({ loading: false, error: err });
+      if (err.status === 401) {
+        console.error('Unauthorized access - redirecting to login');
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.href = '/login'; // Redirect to login page
+        return;
+      }
     }
   },
 }));

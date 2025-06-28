@@ -123,7 +123,6 @@ export const useBirthdayStore = create<BirthdayState>()(
           });
 
           if (response.status === 401) {
-            // Handle unauthorized access
             console.error('Unauthorized access - redirecting to login');
             localStorage.removeItem('token');
             localStorage.removeItem('user');

@@ -23,7 +23,17 @@ const DashboardHome: React.FC = () => {
   } = useDashboardStore();
 
   useEffect(() => {
-    fetchDashboard();
+    try {
+      if (!stats.length && !loading) {
+        fetchDashboard();
+      }
+    } catch (err) {
+      console.error('Error fetching dashboard data:', err);
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.location.href = '/login'; // Redirect to login page
+    }
+    // fetchDashboard();
   }, []);
 
   if (loading) {
