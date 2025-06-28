@@ -59,15 +59,6 @@ export const useBirthdayStore = create<BirthdayState>()(
             }
           );
 
-          if(response.status === 401) {
-            // Handle unauthorized access
-            console.error('Unauthorized access - redirecting to login');
-            localStorage.removeItem('token');
-            localStorage.removeItem('user');
-            window.location.href = '/login'; // Redirect to login page
-            return;
-          }
-
           const birthdays = response.data;
           const today = new Date();
 
@@ -105,12 +96,20 @@ export const useBirthdayStore = create<BirthdayState>()(
             loaded: true,
             lastFetched: Date.now(),
           });
-        } catch (error) {
+        } catch (error: Error | any) {
           console.error('Error fetching birthdays:', error);
           set({
             error: 'Failed to fetch birthdays',
             loading: false,
           });
+          if (error.status === 401) {
+            // Handle unauthorized access
+            console.error('Unauthorized access - redirecting to login');
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = '/login'; // Redirect to login page
+            return;
+          }
         }
       },
 
@@ -121,14 +120,6 @@ export const useBirthdayStore = create<BirthdayState>()(
               Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
           });
-
-          if (response.status === 401) {
-            console.error('Unauthorized access - redirecting to login');
-            localStorage.removeItem('token');
-            localStorage.removeItem('user');
-            window.location.href = '/login'; // Redirect to login page
-            return;
-          }
 
           set((state) => {
             const newBirthday = response.data;
@@ -167,9 +158,17 @@ export const useBirthdayStore = create<BirthdayState>()(
               otherBirthdays: others,
             };
           });
-        } catch (error) {
+        } catch (error: Error | any) {
           console.error('Error adding birthday:', error);
-          throw error;
+          // throw error;
+          if (error.status === 401) {
+            // Handle unauthorized access
+            console.error('Unauthorized access - redirecting to login');
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = '/login'; // Redirect to login page
+            return;
+          }
         }
       },
 
