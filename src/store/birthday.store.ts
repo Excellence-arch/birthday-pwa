@@ -78,7 +78,7 @@ export const useBirthdayStore = create<BirthdayState>()(
             });
 
           const others = birthdays
-            .filter((b: Birthday) => !upcoming.some((u) => u._id === b._id))
+            .filter((b: Birthday) => !upcoming.some((u: { _id: string; }) => u._id === b._id))
             .sort((a: Birthday, b: Birthday) => {
               const aDate = new Date(a.dob);
               const bDate = new Date(b.dob);
