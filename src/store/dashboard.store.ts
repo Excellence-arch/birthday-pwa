@@ -27,7 +27,7 @@ interface DashboardState {
   recentActivity: Activity[];
   loading: boolean;
   loaded: boolean;
-  error: string | null;
+  error: any | null;
   fetchDashboard: () => Promise<void>;
 }
 
@@ -71,7 +71,7 @@ export const useDashboardStore = create<DashboardState>((set, get) => ({
       });
     } catch (err: any) {
       console.error('Error fetching dashboard:', err);
-      set({ loading: false, error: err.message });
+      set({ loading: false, error: err });
     }
   },
 }));

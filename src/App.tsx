@@ -6,6 +6,8 @@ import AuthPage from './pages/AuthPage';
 import Dashboard from './pages/Dashboard';
 import DashboardHome from './pages/DashboardHome';
 import NotFoundPage from './pages/NotFoundPage';
+import Birthdays from './pages/BirthdayPage';
+import AddBirthday from './pages/AddBirthday';
 
 const App: React.FC = () => {
   return (
@@ -38,6 +40,14 @@ const App: React.FC = () => {
           <Route
             path="upload"
             element={<UploadPage />}
+          />
+          <Route
+            path="birthdays"
+            element={<Birthdays />}
+          />
+          <Route
+            path="add-birthday"
+            element={<AddBirthday />}
           />
           {/* <Route
           path='*'

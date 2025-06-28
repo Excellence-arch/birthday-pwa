@@ -18,19 +18,21 @@
   box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
+html,
+body {
+  height: auto;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  --webkit-overflow-scrolling: touch;
 }
 
 .landing-container {
-  min-height: 100vh;
-  width: 100%;
   display: flex;
   flex-direction: column;
-  position: relative;
-  overflow: hidden;
   background-color: #f9faff;
   color: var(--dark);
+  overflow: visible;
 }
 
 .background-elements {
@@ -201,8 +203,8 @@ html, body {
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-
-  html, body {
+  html,
+  body {
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
   }
@@ -239,7 +241,8 @@ html, body {
     max-width: 300px;
   }
 
-  .blob-1, .blob-2 {
+  .blob-1,
+  .blob-2 {
     display: none;
   }
 }

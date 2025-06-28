@@ -8,6 +8,7 @@ import {
   FaCog,
   FaBell,
   FaSignOutAlt,
+  FaUserPlus,
 } from 'react-icons/fa';
 import './../css/Dashboard.css';
 
@@ -74,11 +75,16 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
   const navItems = [
     { path: '/dashboard', icon: <FaHome />, label: 'Home' },
     {
-      path: '/dashboard/reminders',
+      path: '/dashboard/birthdays',
       icon: <FaCalendarAlt />,
-      label: 'Reminders',
+      label: 'Birthdays',
     },
     { path: '/dashboard/upload', icon: <FaUserFriends />, label: 'Upload' },
+    {
+      path: '/dashboard/add-birthday',
+      icon: <FaUserPlus />,
+      label: 'Add Birthday',
+    },
     {
       path: '/dashboard/notifications',
       icon: <FaBell />,
