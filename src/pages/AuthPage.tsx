@@ -82,7 +82,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ type }) => {
           </p>
         </div>
 
-        <a href="https://birthday-ienx.onrender.com/auth/google">
+        <a href="https://birthday-ienx.onrender.com/api/auth/google">
           <motion.div
             className="google-button"
             whileHover={{ scale: 1.03 }}
