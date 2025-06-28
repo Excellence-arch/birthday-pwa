@@ -152,7 +152,7 @@ const NotFoundPage: React.FC = () => {
         >
           <FiMail /> Need help?{' '}
           <motion.a
-            href="mailto:support@example.com"
+            href="mailto:oladipupomichael9@gmail.com"
             whileHover={{ color: '#6e8efb' }}
           >
             Contact us
